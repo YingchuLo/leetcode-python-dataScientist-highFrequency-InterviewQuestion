@@ -127,3 +127,43 @@ class Solution:
                 else: min_of_right = min(A[i],B[j])
                     
                 return (max(A[i-1],B[j-1])+min(A[i],B[j])) % 2
+# 5 Longest Palindromic(回文) Substring
+# https://leetcode.com/problems/longest-palindromic-substring/
+#Example 1:
+#Input: "babad"
+#Output: "bab"
+#Note: "aba" is also a valid answer.
+
+#Example 2:
+#Input: "cbbd"
+#Output: "bb"
+#version1
+class Solution:
+    def expandAroundCenter(self, s, left, right):
+        L=left
+        R=right
+        while L >= 0 and R < len(s) and s[L] == s[R] :
+            L=L-1
+            R=R+1
+        return R-L-1
+        
+    def longestPalindrome(self, s):
+        if len(s) < 1:
+            return ""
+        
+        start = 0
+        end = 0
+        len1 = 0
+        len2 = 0
+        len3 = 0
+        
+        for i in range(0,len(s)):
+            len1 = self.expandAroundCenter(s,i,i)
+            len2 = self.expandAroundCenter(s,i,i+1)
+            len3 = max(len1, len2)
+            if(len3 > end - start ):
+                start = int(i - ( len3 - 1 ) / 2)
+                print(start)
+                end = int(i + len3 / 2)
+                print(end)
+        return s[start:end+1]
