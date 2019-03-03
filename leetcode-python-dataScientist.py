@@ -5,6 +5,14 @@
 # 3. the 3rd num would be >= a+b
 # 4. how to get all the number >= a+b ? Binarysearch
 
+# Input: [2,2,3,4]
+# Output: 3
+# Explanation:
+# Valid combinations are: 
+# 2,3,4 (using the first 2)
+# 2,3,4 (using the second 2)
+# 2,2,3
+
 class Solution(object):
 
   def binarySearch(self, nums, l, r, target):
