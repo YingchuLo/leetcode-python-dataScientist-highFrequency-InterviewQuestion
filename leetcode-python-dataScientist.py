@@ -105,11 +105,12 @@ class Solution:
             A,B,m,n=B,A,n,m
         if n == 0:
             print("ValueError")
-        half_len=round((m+n+1)/2)
+        half_len=(m+n+1)/2
         imin, imax= 0, m
+        
         while imin <= imax:
-            i=round((imin+imax) /2)
-            j=half_len-i
+            i=int(round((imin+imax) /2))
+            j=int(round(half_len-i))
             if i < m and B[j-1] > A[i]:
                 imin=i+1
             elif i>0 and A[i-1] > B[j]:
@@ -122,11 +123,11 @@ class Solution:
                 if (m+n) % 2 ==1:
                     return max_of_left
                 
-                if i==0: min_of_right=B[j]
-                elif j ==0 : min_of_right=A[i]
+                if i==m: min_of_right=B[j]
+                elif j ==n : min_of_right=A[i]
                 else: min_of_right = min(A[i],B[j])
-                    
-                return (max(A[i-1],B[j-1])+min(A[i],B[j])) % 2
+    
+                return ( float(max_of_left) + float(min_of_right) ) / 2
 # 5 Longest Palindromic(回文) Substring
 # https://leetcode.com/problems/longest-palindromic-substring/
 #Example 1:
