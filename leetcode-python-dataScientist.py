@@ -13,26 +13,19 @@
 # 2,3,4 (using the second 2)
 # 2,2,3
 
-class Solution(object):
-
-  def binarySearch(self, nums, l, r, target):
-    while l < r:
-      mid = round((l+r) / 2)
-      if nums[mid] >= target:
-        r = mid
-      else:
-        l = mid + 1
-    return l if target <= nums[l] else l+1
-
-  # This algorithm will give us O(n^2logn) time complexity.
-  def triangleNumber(self, nums):
-    nums.sort()
-    result = 0
-    for i in range(len(nums)-2):
-      for j in range(i+1, len(nums)-1):
-        k = self.binarySearch(nums, j+1, len(nums)-1, nums[i]+nums[j])
-        result += (k-1) - j
-    return result
+class Solution:
+    def triangleNumber(self, nums):
+        nums.sort()
+        result = 0
+        for i in range(2, len(nums)):
+          l, r = 0, i-1
+          while (l < r):
+            if nums[l] + nums[r] > nums[i]:
+              result += r-l
+              r -= 1
+            else:
+              l += 1
+        return result
 
 # 412 Fizz Buzz
 # Print out numbers from 1 to n. 
